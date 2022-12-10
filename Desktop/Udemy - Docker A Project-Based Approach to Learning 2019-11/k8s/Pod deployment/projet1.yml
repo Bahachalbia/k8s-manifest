@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 3
+  template: # template for the pods
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqapp
+spec:
+  selector:
+    matchLabels:
+      app: mqapp
+  replicas: 3
+  template: # template for the pods
+    metadata:
+      labels:
+        app: mqapp
+    spec:
+      containers:
+        - name: mqapp
+          image: richardchesterwood/k8s-fleetman-queue:release1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiapp
+spec:
+  selector:
+    matchLabels:
+      app: apiapp
+  replicas: 3
+  template: # template for the pods
+    metadata:
+      labels:
+        app: apiapp
+    spec:
+      containers:
+        - name: apiapp
+          image: richardchesterwood/k8s-fleetman-api-gateway:release1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simapp
+spec:
+  selector:
+    matchLabels:
+      app: simapp
+  replicas: 3
+  template: # template for the pods
+    metadata:
+      labels:
+        app: simapp
+    spec:
+      containers:
+        - name: simapp
+          image: richardchesterwood/k8s-fleetman-position-simulator:release1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trackapp
+spec:
+  selector:
+    matchLabels:
+      app: trackapp
+  replicas: 3
+  template: # template for the pods
+    metadata:
+      labels:
+        app: trackapp
+    spec:
+      containers:
+        - name: trackapp
+          image: richardchesterwood/k8s-fleetman-position-tracker:release1

@@ -1,0 +1,36 @@
+ apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+spec:
+  selector:
+    matchLabels:
+      app: back
+  replicas: 3
+  template: # template for the pods
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+        - name: back
+          image: bahachalbia/back
+---
+ apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front
+spec:
+  selector:
+    matchLabels:
+      app: front
+  replicas: 3
+  template: # template for the pods
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front
+          image: bahachalbia/front
+          
